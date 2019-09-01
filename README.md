@@ -31,109 +31,95 @@ npm start
 
 ## Data Model Design.
 
-![alt text](DataModel.PNG)
+![alt text](DataModel.png)
 
 ## App Component Design.
 
-A screenshot showing the component stories from Storybook  
+k  
 
 
 ## UI Design.
 
-![][image1]
-![][image2]
-![][image4]
-![][image6]
-![][image8]
-![][image9]
+![alt text](SigninPage.PNG)
+![alt text](SignupPage.PNG)
+![alt text](Trending.PNG)
+![alt text](Search.PNG)
+![alt text](Capture.png)
 
-## Routing.
 
-public views
-
-+ /user/login - login page
-+ /user/signup - new user signup page
-+ /contact - basic contact page
-+ / -About the app
-
-private views (require login)
-
-+ /home/ - user home once logged in.
-+ /home/profile - displays user profile also allowed to edit.
-+ /home/pds - dispalyes the various personal data stored for the user, under three areas and allowed to add a custom item.
-+ /home/privacy - dipalyes the privacy options created by you.
 
 # Web API Endpoint Reference
-Base URL: localhost:8080/api
-The above service offer API to operate a personal data store, which involes endpoints to user login/signup, allowing to view, modify/delete  or add a item to their activities. Allow offers endpoints to add and modify their privacy options. Here each privacy options can be saved with a set of rules.
+Base URL: localhost:3001/
+The above service offer API to operate the socail networking website .The endpoints allows various functionalites like search for users,get single post,comment on post,upvote post,Upload photos to S3 bucket,Get user profile etc
 
 ## Web API Install and Operation
 Below the below commmand is added to start script in package.json. 
-    nodemon --ignore PersonalDataLake/* --exec babel-node index.js
-
-+ Here nodemon is a dev-dependency used to automatically restart the node application when file changes in the directory are detected.
+ 
 + And babel-node is a cli used to transpile and compile ES6 js code, to make it back ward compatible.
 
 ## API Design
-
-+ /api/users
-    + GET : fetches all the users
-    + POST : when user name and password are passed, it does authentication and return jwt token for the session(action=regster registers the user)
-
-+ /api/acts
-    + GET : fetches activities all the activities for the current user.
-    + POST : add a new activity for the user
-
-+ /api/acts/{actid}
-    + GET : fetches activity based on the activity id 
-    + PUT : add a new activity for the user 
-    + DELETE : romves the activity
-
-+ /api/privacy
-    + GET : fetches activities all the privacy options for the current user.
-    + POST : add a new privacy option for the user
-
-+ /api/privacy/{privacyid}
-    + GET : returns activity based on the privacy id passed
-    + DELETE : removes the privacy option
-
-+ /api/privacy/{privacyid}/rules
-    + POST : appends a new rule to privacy
-
-## API Configuration
-Below is the configuration for development environment. Here hostname and port to run the node app in dev machine and the database connection option is declred in .env file.
-
-NODE_ENV=development
-PORT=8080
-HOST=localhost
-mongoDB=mongodb://localhost:27017/contacts_db
-seedDb=true
-secret=mySecret
+### /User
++ /User/login
+    + POST : when the correct email and password is passed it returns a JWT token with help of which user can access protected endpoints
++ /User/Signup
+    + POST : New users can Signup with their emailid,username and password
++ /User/Single/:userId
+    + GET : Can be used to retrive single user
++ /User/Single/:userId
+    + GET : Can be used to retrive single user    
++ /User/search/:name
+    + GET : This  endpoint is used for Mongo text search.It returns a list of record matching the a string
+    
+### /Post
++ /Post/:userId
+    + POST : This route checks if the user is authenticated or not and this endpoint faclitates users to upload picture via multipart form.The uploaded images is then loaded into  Amazon S3 .The link generated after the upload is loaded into mongo db
++ /Post
+    + GET : Fetches all the posts with in the data base
++ /Post/single/:PostId
+    + GET : retrives a single post based on the POSTId passed
++ /Post/:userId
+    + GET : retrives all the post of that particular user(endpoint responssible for displaying Users Post History).
++ /Post/Downvote/:PostId 
+    + Post : Users can downvote a certain post by -1 
++ /Post/Upvote/:PostId 
+    + Post : Users can Upvote a certain post by +1     
+    
+    
+### /Comments
++ Comments/:PostId
+    + GET  : It will retrieve all the comments associated with that particular post
+    + POST : This route checks if the user is authenticated or not and this endpoint faclitates users to add comment to the post
++ /Comments/Downvote/:CommentId
+    + POST : Downvote a comment
++ /Comments/Upvote/:CommentId
+    + POST : Upvotevote a comment
++ /Commnts/Awards/:CommentId/:medal
+    + POST : Give gold,Silver or platinium medal to a particular user post
+ 
 
 ## Security and Authentication
 
-In Users API, mongoose schema is enabled with pre configuration to encrypt the password using 'Bcrypt' and salting is done for the encrypted password. This pre config allows to protect the password when ever the user sign-up to the site.
+In Users API, mongoose schema is enabled with pre configuration to encrypt the password using 'Bcrypt'. 
 
-Using Users API whenever a user signup/login a jwt token is created and sent along with the response body. For further Activity and Privacy API calls this token must be passed. Here 'passport' a express middleware service is used to check the validity for the session based on the token passed.
+Using Users API whenever a user signup/login a jwt token is created and sent along with the response body. In order for a user to post Image or cooment on an Image he must send the access token along with the request.The access token when sent is verified by JWT.Verify(token).Furthermore a validity peroid  is also set for the token.
 
-The endpoints that involves this token based authentication are /api/privacy and /api/acts.
+The token is stored in localstorage
+
+The endpoints that involves this token based authentication are /Post/userID and /Comment/PostID.
 
 ## Testing
 
 Unit testing and Integration testing is done for the individual API end points. 
-Unit testing involves test cases that validates the moongose models. Here each endpoint's corresponding model contains a set of test cases that test the their functionality. Sinon.js is used to stub the model calls that involves DB interaction, so that we can verfy only whether modelcalls the correct method to access the DB.
+Unit testing involves test cases that validates the moongose models. Here each endpoint's corresponding model contains a set of test cases that test the their functionality. .
 
-![][testingimage1]
+![alt text](UnitTesting.png)
 
-Integration testing is done by testing each API with a script containing a sequences of tests based API calls. 'Supertest' is used to test individual API calls. For example below script invoves sequence of /api/users endpoint tests, ender each tests a subset of validations are performed to check whether the API works as expedted.
+Integration testing is done by testing each API with a script containing a sequences of tests based API calls. 'Supertest' is used to test individual API calls. For example below script invoves sequence of /users endpoint tests, ender each tests a subset of validations are performed to check whether the API works as expedted.
 
-+ should add a new activity
-+ should get the newly added activity by _id
-    calls the /api/acts/:actid and check activity created in the previous test.
-+ should delete the newly added activity by _id
-+ should not return the any activity for _id 
+![alt text](Capture.PNG
 
-![][testingimage2]
+
+
 
 ## Extra features
 
