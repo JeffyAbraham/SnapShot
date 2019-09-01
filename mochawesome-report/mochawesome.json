@@ -1,0 +1,271 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 8,
+    "passes": 8,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-09-01T14:21:40.636Z",
+    "end": "2019-09-01T14:21:44.966Z",
+    "duration": 4330,
+    "testsRegistered": 8,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b7a8dfe2-3acf-4588-a683-8e3dc829ee74",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "44255a24-2f22-4c4f-af07-08717d1f815d",
+          "title": "Post API test",
+          "fullFile": "C:\\Users\\Jacquelin\\Documents\\ReactApps\\backend\\test\\testpostapi.js",
+          "file": "\\test\\testpostapi.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return Upvote",
+              "fullTitle": "Post API test should return Upvote",
+              "timedOut": false,
+              "duration": 2449,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await supertest(app).post('/Post/Downvote/5d6ae54b569f9e18ac9fb3ca').expect(200).catch(err => {\n            console.error(err);\n            throw err;\n        });\n        res.should.have.property('status').equal(200);",
+              "err": {},
+              "uuid": "774b9fbc-af61-42b1-8630-282e2c725629",
+              "parentUUID": "44255a24-2f22-4c4f-af07-08717d1f815d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return downvote",
+              "fullTitle": "Post API test should return downvote",
+              "timedOut": false,
+              "duration": 398,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await supertest(app).post('/Post/Downvote/5d6ae54b569f9e18ac9fb3ca').expect(200).catch(err => {\n            console.error(err);\n            throw err;\n        });\n        res.should.have.property('status').equal(200);",
+              "err": {},
+              "uuid": "587825c7-a65d-4c5e-bf7a-e531a9047b3a",
+              "parentUUID": "44255a24-2f22-4c4f-af07-08717d1f815d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return collection of JSON documents for a particular user",
+              "fullTitle": "Post API test should return collection of JSON documents for a particular user",
+              "timedOut": false,
+              "duration": 138,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "supertest(app).get('/Post/5d6ae54b569f9e18ac9fb3cb').expect('Content-type', /json/).expect(200) // This is the HTTP response\n.then(res => {\n    // HTTP status should be 200\n    res.should.have.property('status').equal(200);\n    done();\n});",
+              "err": {},
+              "uuid": "91c6149d-4f57-43f2-be51-dd80edbde70c",
+              "parentUUID": "44255a24-2f22-4c4f-af07-08717d1f815d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return collection of JSON documents",
+              "fullTitle": "Post API test should return collection of JSON documents",
+              "timedOut": false,
+              "duration": 139,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "supertest(app).get('/Post').expect('Content-type', /json/).expect(200) // This is the HTTP response\n.then(res => {\n    // HTTP status should be 200\n    res.should.have.property('status').equal(200);\n    done();\n});",
+              "err": {},
+              "uuid": "c0708142-afae-4c01-b003-f6f2a382c614",
+              "parentUUID": "44255a24-2f22-4c4f-af07-08717d1f815d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "774b9fbc-af61-42b1-8630-282e2c725629",
+            "587825c7-a65d-4c5e-bf7a-e531a9047b3a",
+            "91c6149d-4f57-43f2-be51-dd80edbde70c",
+            "c0708142-afae-4c01-b003-f6f2a382c614"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3124,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 120000
+        },
+        {
+          "uuid": "fd8be754-6031-466c-abbe-e20dff6e218b",
+          "title": "Users API test",
+          "fullFile": "C:\\Users\\Jacquelin\\Documents\\ReactApps\\backend\\test\\testuserapi.js",
+          "file": "\\test\\testuserapi.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "Users API test \"before all\" hook",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "testUser.password = 'ur13it040';\n        testUser.email = 'jeffyabrhm@gmail.com';\n        invalidUser.username = 'chancer1';\n        invalidUser.password = 'bad1';\n        done();",
+              "err": {},
+              "uuid": "74e4ecc3-b983-4afd-aba8-508c4fb9d8ee",
+              "parentUUID": "fd8be754-6031-466c-abbe-e20dff6e218b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should register a user",
+              "fullTitle": "Users API test should register a user",
+              "timedOut": false,
+              "duration": 513,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newUser = {\n            username: \"testusedr\",\n            email: \"testuser4123@gmail.com\",\n            profilepic: \"https://avatarfiles.alphacoders.com/951/95107.jpg\",\n            points: 0,\n            password: \"apaskiuhsword\"\n        };\n        supertest(app).post('/User/signup').send(newUser).query({\n            action: 'register'\n        }).expect('Content-type', /json/).expect(201) // This is the HTTP response\n        .then(res => {\n            // HTTP status should be 200\n            res.should.have.property('status').equal(201);\n            done();\n        }).catch(error => {\n            console.error(\"Failed\", error);\n            done(error);\n        });",
+              "err": {},
+              "uuid": "77402dbe-f1d8-43a6-ba77-c82ec9084220",
+              "parentUUID": "fd8be754-6031-466c-abbe-e20dff6e218b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return a user token for valid user",
+              "fullTitle": "Users API test should return a user token for valid user",
+              "timedOut": false,
+              "duration": 295,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "return supertest(app).post('/User/login').send(testUser).expect('Content-type', /json/).expect(200) // This is the HTTP response\n        .then(res => {\n            // HTTP status should be 200\n            res.should.have.property('status').equal(200);\n            res.body.Token.should.exist;\n        }).catch(error => {\n            console.error(\"Failed\", error);\n            throw error;\n        });",
+              "err": {},
+              "uuid": "bc60c6e4-e0d3-4808-b3fb-33d3f4f1ecec",
+              "parentUUID": "fd8be754-6031-466c-abbe-e20dff6e218b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not return a token for invalid user",
+              "fullTitle": "Users API test should not return a token for invalid user",
+              "timedOut": false,
+              "duration": 138,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "supertest(app).post('/User/login').send(invalidUser).expect('Content-type', /json/).expect(401) // This is the HTTP response\n        .then(res => {\n            // HTTP status should be 200\n            res.should.have.property('status').equal(401);\n            done();\n        }).catch(error => {\n            console.error(\"Failed\", error);\n            done(error);\n        });",
+              "err": {},
+              "uuid": "85653773-b09b-4699-93f7-bbf790f5c2a4",
+              "parentUUID": "fd8be754-6031-466c-abbe-e20dff6e218b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should require a user name and password",
+              "fullTitle": "Users API test should require a user name and password",
+              "timedOut": false,
+              "duration": 135,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const noUser = {\n            username: \"\",\n            password: \"\"\n        };\n        const res = await supertest(app).post('/User/login').send(noUser).expect(401).catch(err => {\n            console.error(err);\n            throw err;\n        });\n        res.should.have.property('status').equal(401);",
+              "err": {},
+              "uuid": "b7bedfca-8842-4a42-a2a9-5fe4dc1ec7a6",
+              "parentUUID": "fd8be754-6031-466c-abbe-e20dff6e218b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "77402dbe-f1d8-43a6-ba77-c82ec9084220",
+            "bc60c6e4-e0d3-4808-b3fb-33d3f4f1ecec",
+            "85653773-b09b-4699-93f7-bbf790f5c2a4",
+            "b7bedfca-8842-4a42-a2a9-5fe4dc1ec7a6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1081,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 120000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "6.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": null,
+      "version": "4.0.1"
+    }
+  }
+}
