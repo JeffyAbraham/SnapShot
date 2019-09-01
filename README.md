@@ -1,8 +1,8 @@
-# Assignment 2 - Web app using React, Nodea and Express.
+# Assignment 2 - Web app using React, Node and Express.
 
 Name: Jeffy Abraham
 
-# Snapshot a photo sharing platform
+# Snapshot "A photo sharing platform"
 
 ## Overview.
 
@@ -116,7 +116,7 @@ Unit testing involves test cases that validates the moongose models. Here each e
 
 Integration testing is done by testing each API with a script containing a sequences of tests based API calls. 'Supertest' is used to test individual API calls. For example below script invoves sequence of /users endpoint tests, ender each tests a subset of validations are performed to check whether the API works as expedted.
 
-![alt text](Capture.PNG
+![alt text](Capture.PNG)
 
 
 
