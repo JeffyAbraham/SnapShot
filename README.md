@@ -31,7 +31,7 @@ npm start
 
 ## Data Model Design.
 
-![][model]
+![alt text](DataModel.PNG)
 
 ## App Component Design.
 
